@@ -4,6 +4,7 @@ import { Router } from "./router/Router";
 import { Header } from "./components/organisms/layout/Header";
 import { ChakraBaseProvider } from "@chakra-ui/react";
 import theme from "./theme/theme";
+import { Footer } from "./components/organisms/layout/Footer";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Router />
+          <Footer />
         </BrowserRouter>
       </ChakraBaseProvider>
   );
