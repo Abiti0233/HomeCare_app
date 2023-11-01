@@ -11,7 +11,7 @@ import { PrimaryButton } from "../atoms/Button/PrimaryButton";
 
 export const InputForm = () => {
   return (
-    <Flex bg="white" w="750px" h="660px" pt="16px" pl="16px" mx="auto">
+    <Flex bg="white" w={{ base: "500px", md: "750px"}} h="660px" pt="16px" pl="16px" mx="auto" >
       <Box>
         <Heading fontSize="20px" mb="24px">
           お問い合わせ
@@ -28,6 +28,7 @@ export const InputForm = () => {
           <SLabel labelTitle="お問い合わせ内容" />
           <Textarea
             placeholder="入力してください"
+            w={{base: "468px", md: "718px" }}
             h="261px"
             pl="20px"
             pt="10px"

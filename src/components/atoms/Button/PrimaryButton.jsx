@@ -8,7 +8,7 @@ export const PrimaryButton = (props) => {
   const onClickContactComplete = () => navigate("/contactcomplete");
   const { title, color, bg } = props;
   return (
-    <Button onClick={onClickContactComplete} w="718px" h="60px" mb="32px" color={color} bg={bg}>
+    <Button onClick={onClickContactComplete} w={{base: "468px", md: "718px" }} h="60px" mb="32px" color={color} bg={bg} >
       {title}
     </Button>
   );
