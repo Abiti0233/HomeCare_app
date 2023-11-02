@@ -10,11 +10,11 @@ export const PrimaryButton = (props) => {
     <Button
       onClick={onClickContactComplete}
       w={{base: "268px", md: "718px" }}
-      h="60px"
+      h={{ base: "35px", md:"60px" }}
       mb="32px"
       color={color}
       bg={bg}
-      fontSize={{ base: "10px", md: "20px" }}
+      fontSize={{ base: "15px", md: "20px" }}
     >
       {title}
     </Button>

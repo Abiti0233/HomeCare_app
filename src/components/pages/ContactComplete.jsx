@@ -7,7 +7,7 @@ export const ContactComplete = () => {
 
   const onClickContactForm = () => navigate("/contactform");
   return (
-    <Flex bg="white" w="750px" h="251px" pt="32px" mx="auto">
+    <Flex bg="white" w={{ base: "340px", md: "750px" }} h={{ base: "300px", md: "251px" }} pt="32px" mx="auto">
       <Box textAlign="center" mx="auto">
         <Heading fontSize="20px" mb="48px" color="#2E3331">
           Web予約完了

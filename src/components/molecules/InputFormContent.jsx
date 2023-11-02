@@ -8,13 +8,13 @@ export const InputForm = () => {
     <Flex
       bg="white"
       w={{ base: "300px", md: "750px" }}
-      h="660px"
+      h={{ base: "500px", md: "660px"}}
       pt="16px"
       pl="16px"
       mx="auto"
     >
-            <Box>
-        <Heading fontSize="20px" mb="24px">
+      <Box>
+        <Heading fontSize={{ base: "15px", md: "20px" }} mb="24px">
           お問い合わせ
         </Heading>
         <FormControl>
@@ -29,12 +29,12 @@ export const InputForm = () => {
           <SLabel labelTitle="お問い合わせ内容" />
           <Textarea
             placeholder="入力してください"
-            w={{base: "268px", md: "718px" }}
-            h="261px"
+            w={{ base: "268px", md: "718px" }}
+            h={{ base: "185px", md: "261px" }}
             pl="20px"
             pt="10px"
             _placeholder={{ color: "#D9DEDE" }}
-            mb="24px"
+            mb={{ base: "15px", md:"24px" }}
           />
         </FormControl>
         <PrimaryButton
