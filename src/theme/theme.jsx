@@ -7,6 +7,7 @@ const theme = extendTheme({
         fontFamily: "源ノ角ゴシック JP, Medium",
         backgroundColor: "gray.100",
         color: "#707F89",
+        width:"100%"
       },
     },
   },

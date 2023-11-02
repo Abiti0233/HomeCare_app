@@ -10,25 +10,21 @@ export const Header = () => {
       bg="white"
       h="60px"
       display="flex"
-      lineHeight="60px"
+      justifyContent="center"
+      alignItems="center"
+      gap="44vw"
       borderTop="2px solid #F06364"
       mb="40px"
-      w="100%"
+      w="100vw"
     >
-      <Box className="header-left" pl="145px" pt="15px">
+      <Box className="header-left" >
         <Img
           className="header-img"
           src={LogoImg}
           alt="ホームケアナビアイコン"
         />
       </Box>
-      <Box
-        className="header-right"
-        ml="auto"
-        pr="145px"
-        fontSize="13px"
-        position="relative"
-      >
+      <Box className="header-right" fontSize="13px">
         <Box className="header-list" display={{ base: "none", lg: "flex" }}>
           <ChakraLink to={"#"} mr="20px">
             閲覧履歴
@@ -51,8 +47,9 @@ export const Header = () => {
           variant="unstyled"
           display={{ base: "block", lg: "none" }}
           color="black"
-          // position="absolute"
-          // right="20px"
+          position="absolute"
+          right="20px"
+          top="15px"
         />
       </Box>
     </Box>

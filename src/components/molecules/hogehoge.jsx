@@ -7,13 +7,13 @@ export const InputForm = () => {
   return (
     <Flex
       bg="white"
-      w={{ base: "300px", md: "750px" }}
+      w={{ base: "500px", md: "750px" }}
       h="660px"
       pt="16px"
       pl="16px"
       mx="auto"
     >
-            <Box>
+      <Box>
         <Heading fontSize="20px" mb="24px">
           お問い合わせ
         </Heading>
@@ -29,7 +29,7 @@ export const InputForm = () => {
           <SLabel labelTitle="お問い合わせ内容" />
           <Textarea
             placeholder="入力してください"
-            w={{base: "268px", md: "718px" }}
+            w={{ base: "468px", md: "718px" }}
             h="261px"
             pl="20px"
             pt="10px"
