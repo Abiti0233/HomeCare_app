@@ -1,14 +1,50 @@
-import { Box, Flex, FormControl, Heading, Textarea } from "@chakra-ui/react";
-import { SInput } from "../atoms/Input/Input";
+import { Box, Flex, FormControl, Heading } from "@chakra-ui/react";
+import { InputMailaddress, InputName } from "../atoms/Input/Input";
 import { SLabel } from "../atoms/Label/Label";
 import { PrimaryButton } from "../atoms/Button/PrimaryButton";
+import { InputDescription } from "../atoms/Input/Textarea";
+import axios from "axios";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const InputForm = () => {
+  const [inputName, setInputName] = useState("");
+  const onChangeInputName = (e) => setInputName(e.target.value);
+
+  const [inputMailaddress, setInputMailaddress] = useState("");
+  const onChangeInputMailaddress = (e) => setInputMailaddress(e.target.value);
+
+  const [inputDescription, setInputDescription] = useState("");
+  const onChangeInputDescription = (e) => setInputDescription(e.target.value);
+
+  const navigate = useNavigate();
+
+  const sendFormData = async () => {
+    navigate("/contactcomplete")
+
+    const url = "http://localhost:3000/api/v1/contacts";
+    const data = {
+      contact: {
+        name: inputName,
+        mailaddress: inputMailaddress,
+        description: inputDescription,
+      },
+    };
+    axios
+      .post(url, data)
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error.response.data.message);
+      });
+  };
+
   return (
     <Flex
       bg="white"
       w={{ base: "300px", md: "750px" }}
-      h={{ base: "500px", md: "660px"}}
+      h={{ base: "500px", md: "660px" }}
       pt="16px"
       pl="16px"
       mx="auto"
@@ -19,25 +55,30 @@ export const InputForm = () => {
         </Heading>
         <FormControl>
           <SLabel labelTitle="お名前" />
-          <SInput title="田中太郎" />
+          <InputName
+            title="田中太郎"
+            onChange={onChangeInputName}
+            value={inputName}
+          />
         </FormControl>
         <FormControl>
           <SLabel labelTitle="返信用メールアドレス" />
-          <SInput title="homecarenavi@mail.com" />
+          <InputMailaddress
+            title="homecarenavi@mail.com"
+            onChange={onChangeInputMailaddress}
+            value={inputMailaddress}
+          />
         </FormControl>
         <FormControl>
           <SLabel labelTitle="お問い合わせ内容" />
-          <Textarea
-            placeholder="入力してください"
-            w={{ base: "268px", md: "718px" }}
-            h={{ base: "185px", md: "261px" }}
-            pl="20px"
-            pt="10px"
-            _placeholder={{ color: "#D9DEDE" }}
-            mb={{ base: "15px", md:"24px" }}
+          <InputDescription
+            title="入力してください"
+            onChange={onChangeInputDescription}
+            value={inputDescription}
           />
         </FormControl>
         <PrimaryButton
+          onClick={sendFormData}
           bg="#F06364"
           color="white"
           title="この内容で問い合わせる"
