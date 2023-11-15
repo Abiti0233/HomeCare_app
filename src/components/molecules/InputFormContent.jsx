@@ -1,4 +1,9 @@
-import { Box, Flex, FormControl, Heading } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  FormControl,
+  Heading,
+} from "@chakra-ui/react";
 import { InputMailaddress, InputName } from "../atoms/Input/Input";
 import { SLabel } from "../atoms/Label/Label";
 import { PrimaryButton } from "../atoms/Button/PrimaryButton";
@@ -9,6 +14,10 @@ import { useNavigate } from "react-router-dom";
 
 export const InputForm = () => {
   const [inputName, setInputName] = useState("");
+  const [nameError, setNameError] = useState("");
+  const [mailaddressError, setMailaddressError] = useState("");
+  const [descriptionError, setDescriptionError] = useState("");
+
   const onChangeInputName = (e) => setInputName(e.target.value);
 
   const [inputMailaddress, setInputMailaddress] = useState("");
@@ -20,8 +29,6 @@ export const InputForm = () => {
   const navigate = useNavigate();
 
   const sendFormData = async () => {
-    navigate("/contactcomplete")
-
     const url = "http://localhost:3000/api/v1/contacts";
     const data = {
       contact: {
@@ -30,13 +37,26 @@ export const InputForm = () => {
         description: inputDescription,
       },
     };
+    setNameError("");
+    setMailaddressError("");
+    setDescriptionError("");
+
     axios
       .post(url, data)
       .then((response) => {
-        console.log(response);
+        if (response.data) {
+          navigate("/contactcomplete");
+          console.log(response);
+        }
       })
       .catch((error) => {
-        console.log(error.response.data.message);
+        if (error.response) {
+          const errorData = error.response.data.data;
+
+          if (errorData.name) setNameError(errorData.name[0]);
+          if (errorData.mailaddress) setMailaddressError(errorData.mailaddress[0]);
+          if (errorData.description) setDescriptionError(errorData.description[0]);
+        }
       });
   };
 
@@ -44,7 +64,7 @@ export const InputForm = () => {
     <Flex
       bg="white"
       w={{ base: "300px", md: "750px" }}
-      h={{ base: "500px", md: "660px" }}
+      h={{ base: "500px", md: "720px" }}
       pt="16px"
       pl="16px"
       mx="auto"
@@ -60,6 +80,7 @@ export const InputForm = () => {
             onChange={onChangeInputName}
             value={inputName}
           />
+          {nameError && <div style={{ color: 'red', fontSize: "15px" }}>{nameError}</div>}
         </FormControl>
         <FormControl>
           <SLabel labelTitle="返信用メールアドレス" />
@@ -68,6 +89,7 @@ export const InputForm = () => {
             onChange={onChangeInputMailaddress}
             value={inputMailaddress}
           />
+          {mailaddressError && <div style={{ color: 'red', fontSize:"15px" }}>{mailaddressError}</div>}
         </FormControl>
         <FormControl>
           <SLabel labelTitle="お問い合わせ内容" />
@@ -76,6 +98,7 @@ export const InputForm = () => {
             onChange={onChangeInputDescription}
             value={inputDescription}
           />
+          {descriptionError && <div style={{ color: 'red', fontSize: "15px" }}>{descriptionError}</div>}
         </FormControl>
         <PrimaryButton
           onClick={sendFormData}
